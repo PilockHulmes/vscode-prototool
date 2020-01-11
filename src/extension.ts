@@ -1,13 +1,13 @@
 import * as vscode from 'vscode';
-import ProtobufDocumentFormatter from './formatter';
+import formatter from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
-
-
 	let disposable = vscode.languages.registerDocumentRangeFormattingEditProvider(
 		{ scheme: 'file', language: 'protobuf3' },
-		new ProtobufDocumentFormatter(),
+		new formatter.ProtobufDocumentFormatter(),
 	);
+
+	// TODO: add linter
 
 	context.subscriptions.push(disposable);
 }

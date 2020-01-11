@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 
-export default class ProtobufDocumentFormatter implements vscode.DocumentRangeFormattingEditProvider {
+class ProtobufDocumentFormatter implements vscode.DocumentRangeFormattingEditProvider {
     public provideDocumentRangeFormattingEdits(
         document: vscode.TextDocument, range: vscode.Range,
         options: vscode.FormattingOptions, token: vscode.CancellationToken):
@@ -14,3 +14,7 @@ export default class ProtobufDocumentFormatter implements vscode.DocumentRangeFo
         return [t];
     }
 }
+
+export default {
+    "ProtobufDocumentFormatter": ProtobufDocumentFormatter,
+};
