@@ -2,8 +2,9 @@ import * as vscode from 'vscode';
 import formatter from './formatter';
 
 export function activate(context: vscode.ExtensionContext) {
-	let disposable = vscode.languages.registerDocumentRangeFormattingEditProvider(
-		{ scheme: 'file', language: 'protobuf3' },
+	console.log("init succeed")
+	let disposable = vscode.languages.registerDocumentFormattingEditProvider(
+		{ scheme: 'file', language: 'proto3' },
 		new formatter.ProtobufDocumentFormatter(),
 	);
 

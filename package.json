@@ -16,9 +16,7 @@
 	"contributes": {
 		"configuration": {
 			"title": "VscodePrototool",
-			"properties": {
-
-			} 
+			"properties": {}
 		}
 	},
 	"scripts": {
