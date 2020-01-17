@@ -1,4 +1,5 @@
 import * as vscode from 'vscode';
+import * as cp from 'child_process';
 
 class ProtobufDocumentFormatter implements vscode.DocumentFormattingEditProvider {
     public provideDocumentFormattingEdits(
@@ -6,11 +7,10 @@ class ProtobufDocumentFormatter implements vscode.DocumentFormattingEditProvider
         options: vscode.FormattingOptions, token: vscode.CancellationToken):
         vscode.TextEdit[]
     {
-        const firstLine = document.lineAt(0);
-        if (firstLine.text !== '42') {
-          return [vscode.TextEdit.insert(firstLine.range.start, '42\n')];
-        }
-        return []
+        let command = `prototool format -w ${document.fileName}`;
+        cp.exec(command);
+
+        return [];
     }
 }
 
