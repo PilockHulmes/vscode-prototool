@@ -1,6 +1,7 @@
 {
 	"name": "vscode-prototool",
 	"displayName": "vscode-prototool",
+	"publisher": "PilockHulmes",
 	"description": "Lint and format using prototool",
 	"version": "0.0.1",
 	"engines": {

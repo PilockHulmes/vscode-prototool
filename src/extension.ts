@@ -1,16 +1,25 @@
 import * as vscode from 'vscode';
 import formatter from './formatter';
+import linter from './linter';
 
 export function activate(context: vscode.ExtensionContext) {
-	console.log("init succeed")
-	let disposable = vscode.languages.registerDocumentFormattingEditProvider(
+	let format = vscode.languages.registerDocumentFormattingEditProvider(
 		{ scheme: 'file', language: 'proto3' },
 		new formatter.ProtobufDocumentFormatter(),
 	);
 
-	// TODO: add linter
+	let diagnostic = vscode.languages.createDiagnosticCollection("proto3");
 
-	context.subscriptions.push(disposable);
+	let saveLint = vscode.workspace.onDidSaveTextDocument(
+		(document: vscode.TextDocument) => {
+			console.log("enter save listener");
+			linter.ProtobufDocumentLintter(document, diagnostic);
+		}
+	);
+
+	context.subscriptions.push(format);
+	context.subscriptions.push(diagnostic);
+	context.subscriptions.push(saveLint);
 }
 
 // this method is called when your extension is deactivated
